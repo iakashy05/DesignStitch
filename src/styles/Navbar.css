@@ -68,10 +68,34 @@
   width: 100%;
 }
 
-.nav-logo h1 {
-  font-size: 1.75rem;
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav-logo span {
+  font-size: 1.5rem;
   color: var(--accent-maroon);
-  letter-spacing: 1px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .logo-img {
+    height: 35px;
+  }
+  .nav-logo span {
+    font-size: 1.25rem;
+  }
 }
 
 .nav-icon-btn {

@@ -10,7 +10,8 @@ const Footer = () => {
         <div className="footer-grid">
           <div className="footer-brand">
             <Link to="/" className="footer-logo">
-              <h2>DesignStitch</h2>
+              <img src="/DesignStich_logo.png" alt="DesignStitch Logo" className="footer-logo-img" />
+              <span>DesignStitch</span>
             </Link>
             <p className="footer-desc">
               Exquisite hand-embroidered ethnic wear for the modern woman. 

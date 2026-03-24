@@ -54,7 +54,8 @@ const Navbar = () => {
           </div>
 
           <Link to="/" className="nav-logo">
-            <h1>DesignStitch</h1>
+            <img src="/DesignStich_logo.png" alt="DesignStitch Logo" className="logo-img" />
+            <span>DesignStitch</span>
           </Link>
 
           <div className="nav-right">
