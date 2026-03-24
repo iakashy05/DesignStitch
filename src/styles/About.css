@@ -1,0 +1,108 @@
+.about-hero {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/images/Arishta Art Silk Self Design Kurta & Churidar Material.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+.about-hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-image img {
+  border-radius: 8px;
+  box-shadow: 20px 20px 0 var(--primary-beige);
+  aspect-ratio: 4/5;
+  object-fit: cover;
+}
+
+.about-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--accent-maroon);
+}
+
+.about-text p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.about-milestones {
+  display: flex;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.milestone h3 {
+  font-size: 2rem;
+  color: var(--accent-maroon);
+}
+
+.mission-vision {
+  background: var(--primary-beige);
+}
+
+.mv-card {
+  background: white;
+  padding: 3rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.mv-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--accent-maroon);
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2.5rem;
+  margin-top: 4rem;
+}
+
+.step {
+  text-align: center;
+  position: relative;
+}
+
+.step-num {
+  font-size: 3rem;
+  font-family: 'Playfair Display', serif;
+  color: rgba(90, 7, 24, 0.1);
+  display: block;
+  font-weight: 700;
+  margin-bottom: -1.5rem;
+}
+
+.step h4 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.step p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
