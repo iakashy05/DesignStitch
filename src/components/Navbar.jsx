@@ -50,6 +50,7 @@ const Navbar = () => {
               <Link to="/shop" className={location.pathname === '/shop' ? 'active' : ''}>Shop</Link>
               <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>About</Link>
               <Link to="/blog" className={location.pathname === '/blog' ? 'active' : ''}>Blog</Link>
+              <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact</Link>
             </div>
           </div>
 
