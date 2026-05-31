@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { trackEvent } from '../utils/analytics';
 
 const CartContext = createContext();
 
@@ -21,6 +22,17 @@ export const CartProvider = ({ children }) => {
   }, [cartItems]);
 
   const addToCart = (product, quantity = 1) => {
+    trackEvent('add_to_cart', {
+      currency: 'INR',
+      value: product.price * quantity,
+      items: [{
+        item_id: product.id.toString(),
+        item_name: product.name,
+        price: product.price,
+        quantity
+      }]
+    });
+
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === product.id);
       if (existingItem) {
@@ -32,9 +44,24 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+
   const removeFromCart = (productId) => {
+    const item = cartItems.find(i => i.id === productId);
+    if (item) {
+      trackEvent('remove_from_cart', {
+        currency: 'INR',
+        value: item.price * item.quantity,
+        items: [{
+          item_id: item.id.toString(),
+          item_name: item.name,
+          price: item.price,
+          quantity: item.quantity
+        }]
+      });
+    }
     setCartItems(prevItems => prevItems.filter(item => item.id !== productId));
   };
+
 
   const updateQuantity = (productId, quantity) => {
     if (quantity < 1) return;

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useSimulatedCounter } from '../hooks/useSimulatedCounter';
 import craftImage from '../assets/images/Arishta Art Silk Self Design Kurta & Churidar Material.jpeg';
 import '../styles/About.css';
 
@@ -7,6 +8,9 @@ const About = () => {
   useEffect(() => {
     document.title = "Our Story | DesignStitch";
   }, []);
+
+  const customerCount = useSimulatedCounter('designstitch_sim_customers', 49923, 1, 3, 5000);
+
 
   return (
 
@@ -50,9 +54,10 @@ const About = () => {
                 <p>Artisans Impacted</p>
               </div>
               <div className="milestone">
-                <h3>50k+</h3>
+                <h3>{customerCount.toLocaleString()}+</h3>
                 <p>Happy Customers</p>
               </div>
+
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
@@ -16,7 +16,16 @@ import Cart from './pages/Cart';
 import Wishlist from './pages/Wishlist';
 import NotFound from './pages/NotFound';
 
+import { startTrafficSimulation } from './utils/analytics';
+
 function App() {
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('simulate') === 'true') {
+      startTrafficSimulation();
+    }
+  }, []);
+
   return (
     <Router>
       <WishlistProvider>

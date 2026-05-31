@@ -3,10 +3,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ShoppingBag, Search, Menu, X, Heart } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
+import { useSimulatedCounter } from '../hooks/useSimulatedCounter';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/Navbar.css';
 
 const Navbar = () => {
+  const activeShoppers = useSimulatedCounter('designstitch_sim_active_users', 148, -2, 2, 4000);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -18,6 +20,7 @@ const Navbar = () => {
   
   const location = useLocation();
   const navigate = useNavigate();
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -84,6 +87,12 @@ const Navbar = () => {
             <span>DesignStitch</span>
           </Link>
 
+          <div className="live-shoppers-badge desktop-only flex items-center gap-1">
+            <span className="live-dot animate-pulse"></span>
+            <span>{activeShoppers} browsing live</span>
+          </div>
+
+
           <div className="nav-right">
             {/* Desktop Search Form */}
             <form onSubmit={handleSearchSubmit} className={`search-container ${isSearchOpen ? 'open' : ''}`}>
@@ -133,11 +142,20 @@ const Navbar = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="mobile-menu-header">
-                <h2>DesignStitch</h2>
+                <div>
+                  <h2 style={{ lineHeight: 1 }}>DesignStitch</h2>
+                  <div className="live-shoppers-badge flex items-center gap-1" style={{ marginTop: '0.35rem' }}>
+                    <span className="live-dot animate-pulse"></span>
+                    <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
+                      {activeShoppers} browsing live
+                    </span>
+                  </div>
+                </div>
                 <button onClick={() => setIsMobileMenuOpen(false)} title="Close Menu">
                   <X size={24} />
                 </button>
               </div>
+
 
               {/* Mobile Search Form */}
               <form onSubmit={handleMobileSearchSubmit} className="mobile-search-form">

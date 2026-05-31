@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { trackEvent } from '../utils/analytics';
 
 const WishlistContext = createContext();
 
@@ -21,6 +22,16 @@ export const WishlistProvider = ({ children }) => {
   }, [wishlistItems]);
 
   const addToWishlist = (product) => {
+    trackEvent('add_to_wishlist', {
+      currency: 'INR',
+      value: product.price,
+      items: [{
+        item_id: product.id.toString(),
+        item_name: product.name,
+        price: product.price
+      }]
+    });
+
     setWishlistItems(prevItems => {
       const exists = prevItems.some(item => item.id === product.id);
       if (exists) return prevItems;
@@ -28,13 +39,36 @@ export const WishlistProvider = ({ children }) => {
     });
   };
 
+
   const removeFromWishlist = (productId) => {
     setWishlistItems(prevItems => prevItems.filter(item => item.id !== productId));
   };
 
   const toggleWishlist = (product) => {
+    const exists = wishlistItems.some(item => item.id === product.id);
+    if (exists) {
+      trackEvent('remove_from_wishlist', {
+        currency: 'INR',
+        value: product.price,
+        items: [{
+          item_id: product.id.toString(),
+          item_name: product.name,
+          price: product.price
+        }]
+      });
+    } else {
+      trackEvent('add_to_wishlist', {
+        currency: 'INR',
+        value: product.price,
+        items: [{
+          item_id: product.id.toString(),
+          item_name: product.name,
+          price: product.price
+        }]
+      });
+    }
+
     setWishlistItems(prevItems => {
-      const exists = prevItems.some(item => item.id === product.id);
       if (exists) {
         return prevItems.filter(item => item.id !== product.id);
       } else {
@@ -42,6 +76,7 @@ export const WishlistProvider = ({ children }) => {
       }
     });
   };
+
 
   const isInWishlist = (productId) => {
     return wishlistItems.some(item => item.id === productId);

@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { Trash2, ShoppingBag, ArrowRight, X, CreditCard, Truck, CheckCircle2, ChevronRight, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { trackEvent } from '../utils/analytics';
 import '../styles/Cart.css';
+
 
 const Cart = () => {
   useEffect(() => {
@@ -36,6 +38,19 @@ const Cart = () => {
 
   const handleShippingSubmit = (e) => {
     e.preventDefault();
+    
+    trackEvent('add_shipping_info', {
+      currency: 'INR',
+      value: cartTotal,
+      shipping_tier: cartTotal > 4999 ? 'Free' : 'Standard',
+      items: cartItems.map(item => ({
+        item_id: item.id.toString(),
+        item_name: item.name,
+        price: item.price,
+        quantity: item.quantity
+      }))
+    });
+
     setCheckoutStep(2);
   };
 
@@ -44,9 +59,38 @@ const Cart = () => {
     // Generate mock Order ID
     const randomId = 'DS-' + Math.floor(100000 + Math.random() * 900000);
     setOrderId(randomId);
+
+    trackEvent('purchase', {
+      transaction_id: randomId,
+      value: grandTotal,
+      currency: 'INR',
+      tax: 0,
+      shipping: shippingCost,
+      items: cartItems.map(item => ({
+        item_id: item.id.toString(),
+        item_name: item.name,
+        price: item.price,
+        quantity: item.quantity
+      }))
+    });
+
     setCheckoutStep(3);
     // Clear cart on successful purchase
     clearCart();
+  };
+
+  const handleOpenCheckout = () => {
+    trackEvent('begin_checkout', {
+      currency: 'INR',
+      value: cartTotal,
+      items: cartItems.map(item => ({
+        item_id: item.id.toString(),
+        item_name: item.name,
+        price: item.price,
+        quantity: item.quantity
+      }))
+    });
+    setIsCheckoutOpen(true);
   };
 
   const handleCloseCheckout = () => {
@@ -55,6 +99,7 @@ const Cart = () => {
     setShippingForm({ name: '', email: '', phone: '', address: '', city: '', pincode: '' });
     setPaymentForm({ cardName: '', cardNumber: '', expiry: '', cvv: '' });
   };
+
 
   // Helper to format card number with spaces
   const handleCardNumberChange = (e) => {
@@ -146,9 +191,10 @@ const Cart = () => {
             <span>Total</span>
             <span>₹{grandTotal.toLocaleString()}</span>
           </div>
-          <button className="btn btn-primary checkout-btn" onClick={() => setIsCheckoutOpen(true)}>
+          <button className="btn btn-primary checkout-btn" onClick={handleOpenCheckout}>
             Proceed to Checkout
           </button>
+
           <div className="payment-icons">
             <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" />
             <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" />
