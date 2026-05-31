@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { motion } from 'framer-motion';
 import '../styles/Contact.css';
 
 const Contact = () => {
+  useEffect(() => {
+    document.title = "Contact Us | DesignStitch";
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -57,11 +61,18 @@ const Contact = () => {
           </div>
 
           <div className="contact-map">
-            {/* Placeholder for Map */}
-            <div className="map-placeholder">
-              <p>Map View</p>
-            </div>
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14022.428581635384!2d77.08534015632128!3d28.491295984666355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1937ff6538f9%3A0x608e5e77ccabaf14!2sCyber%20City%2C%20Gurugram%2C%20Haryana!5e0!3m2!1sen!2sin!4v1716301292023!5m2!1sen!2sin" 
+              width="100%" 
+              height="280" 
+              style={{ border: 0, borderRadius: '8px', boxShadow: '0 4px 15px rgba(0,0,0,0.05)' }} 
+              allowFullScreen="" 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              title="DesignStitch Atelier Location Map"
+            ></iframe>
           </div>
+
         </div>
 
         <motion.div 

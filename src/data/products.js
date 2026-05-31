@@ -4,7 +4,7 @@ import p3 from '../assets/images/Embroidery Kurta with Dupatta.jpeg';
 import p4 from '../assets/images/Festive, Reception Blue color Organza Silk fabric Salwar Kameez _ 1946143.jpeg';
 import p5 from '../assets/images/Pink embroidered rayon kurta set - Kurta-sets.jpeg';
 import p6 from '../assets/images/Pure Cotton Embroidered Kurta Set for Women ₹ 819.jpeg';
-import cat1 from '../assets/images/Women\'s Cotton Yoke Design Straight Kurta Pant with Dupatta Set.jpeg';
+import cat1 from "../assets/images/Women's Cotton Yoke Design Straight Kurta Pant with Dupatta Set.jpeg";
 import cat2 from '../assets/images/download.jpeg';
 
 export const products = [
@@ -17,7 +17,8 @@ export const products = [
     description: "A stunning maroon silk Anarkali suit with intricate gold dori embroidery and sequence work. Perfect for festive occasions.",
     sizes: ["S", "M", "L", "XL"],
     inStock: true,
-    rating: 4.8
+    rating: 4.8,
+    badge: "Best Seller"
   },
   {
     id: 2,
@@ -39,7 +40,8 @@ export const products = [
     description: "Elegant mint green suit with delicate floral hand-embroidery. Light and comfortable for summer weddings.",
     sizes: ["S", "M", "L"],
     inStock: true,
-    rating: 4.9
+    rating: 4.9,
+    badge: "Trending"
   },
   {
     id: 4,
@@ -72,7 +74,100 @@ export const products = [
     description: "Premium emerald green velvet suit with heavy gold embroidery and stone work.",
     sizes: ["M", "L"],
     inStock: true,
-    rating: 5.0
+    rating: 5.0,
+    badge: "Luxury"
+  },
+  {
+    id: 7,
+    name: "Midnight Black Georgette Sharara",
+    category: "Suits",
+    price: 4800,
+    image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80",
+    description: "Exquisite black georgette sharara suit featuring gorgeous silver zari and threadwork, designed for evening celebrations.",
+    sizes: ["S", "M", "L", "XL"],
+    inStock: true,
+    rating: 4.8,
+    badge: "Elegant"
+  },
+  {
+    id: 8,
+    name: "Mustard Yellow Silk Lehenga-Suit",
+    category: "Festive Wear",
+    price: 6200,
+    image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80",
+    description: "Vibrant mustard yellow raw silk suit with a flared lehenga-style bottom. Rich golden border and sequin detailing.",
+    sizes: ["M", "L", "XL"],
+    inStock: true,
+    rating: 4.9,
+    badge: "Top Rated"
+  },
+  {
+    id: 9,
+    name: "Peach Ombre Organza Kurta Set",
+    category: "New Arrivals",
+    price: 3500,
+    image: "https://images.unsplash.com/photo-1608748010899-18f300247112?auto=format&fit=crop&w=800&q=80",
+    description: "Lightweight organza suit with peach ombre shading and delicate silver gota patti hand-embroidery.",
+    sizes: ["S", "M", "L"],
+    inStock: true,
+    rating: 4.7
+  },
+  {
+    id: 10,
+    name: "Indigo Blue Block Print Salwar",
+    category: "Salwar",
+    price: 2500,
+    image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80",
+    description: "Premium indigo cotton suit featuring traditional hand-block printing and soft kantha stitching on the yoke.",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    inStock: true,
+    rating: 4.5
+  },
+  {
+    id: 11,
+    name: "Lavender Meadow Embroidered Suit",
+    category: "New Arrivals",
+    price: 4100,
+    image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=800&q=80",
+    description: "Dreamy lavender suit crafted in soft georgette with delicate pastel thread embroidery and scalloped borders.",
+    sizes: ["M", "L", "XL"],
+    inStock: true,
+    rating: 4.8,
+    badge: "New"
+  },
+  {
+    id: 12,
+    name: "Turquoise Silk Jacquard Gharara",
+    category: "Festive Wear",
+    price: 5900,
+    image: "https://images.unsplash.com/photo-1610030470352-7abdf5180f68?auto=format&fit=crop&w=800&q=80",
+    description: "A premium turquoise green banarasi silk jacquard gharara set with rich golden patterns and silk dupatta.",
+    sizes: ["M", "L", "XL"],
+    inStock: true,
+    rating: 4.9
+  },
+  {
+    id: 13,
+    name: "Ivory Pearl Georgette Kurta",
+    category: "Suits",
+    price: 3900,
+    image: "https://images.unsplash.com/photo-1621184455862-c163dfb30e0f?auto=format&fit=crop&w=800&q=80",
+    description: "Graceful ivory white kurta suit adorned with subtle faux-pearl and silver bead embroidery on pure georgette.",
+    sizes: ["S", "M", "L", "XL"],
+    inStock: true,
+    rating: 4.6
+  },
+  {
+    id: 14,
+    name: "Ruby Wine Velvet Palazzo Set",
+    category: "Festive Wear",
+    price: 5800,
+    image: "https://images.unsplash.com/photo-1631856955409-dfb34f0e6988?auto=format&fit=crop&w=800&q=80",
+    description: "Sophisticated deep ruby wine velvet palazzo suit decorated with exquisite tilla gold embroidery on the neckline.",
+    sizes: ["M", "L", "XL", "XXL"],
+    inStock: false,
+    rating: 5.0,
+    badge: "Sold Out"
   }
 ];
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Star, Truck, ShieldCheck, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -8,9 +8,14 @@ import heroImage from '../assets/images/32628191408eafd987cefddec6da8621.jpg';
 import '../styles/Home.css';
 
 const Home = () => {
+  useEffect(() => {
+    document.title = "DesignStitch | Premium Hand-Embroidered Ethnic Wear";
+  }, []);
+
   const featuredProducts = products.slice(0, 3);
 
   return (
+
     <div className="home-page">
       {/* Hero Section */}
       <section className="hero">

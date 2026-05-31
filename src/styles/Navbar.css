@@ -126,6 +126,23 @@
   font-weight: 700;
 }
 
+.wishlist-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: var(--accent-maroon);
+  color: white;
+  font-size: 0.7rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+
 .search-container {
   display: flex;
   align-items: center;
@@ -242,3 +259,31 @@
     gap: 0.5rem;
   }
 }
+
+.mobile-search-form {
+  display: flex;
+  margin-bottom: 2rem;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.mobile-search-form input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: none;
+  outline: none;
+  background: var(--primary-beige);
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.mobile-search-form button {
+  padding: 0 1rem;
+  background: var(--accent-maroon);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import craftImage from '../assets/images/Arishta Art Silk Self Design Kurta & Churidar Material.jpeg';
 import '../styles/About.css';
 
 const About = () => {
+  useEffect(() => {
+    document.title = "Our Story | DesignStitch";
+  }, []);
+
   return (
+
     <div className="about-page">
       <section className="about-hero">
         <div className="container">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, User, ArrowLeft, Tag } from 'lucide-react';
@@ -9,7 +9,14 @@ const BlogPost = () => {
   const { id } = useParams();
   const post = blogPosts.find(p => p.id === parseInt(id));
 
+  useEffect(() => {
+    if (post) {
+      document.title = `${post.title} | DesignStitch Blog`;
+    }
+  }, [post]);
+
   if (!post) {
+
     return (
       <div className="container section-padding text-center">
         <h2>Post not found</h2>

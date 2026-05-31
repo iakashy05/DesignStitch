@@ -19,6 +19,7 @@ const ProductDetails = () => {
     setProduct(foundProduct);
     if (foundProduct) {
       setSelectedSize(foundProduct.sizes[0]);
+      document.title = `${foundProduct.name} | DesignStitch`;
     }
     // Scroll to top on product change
     window.scrollTo(0, 0);

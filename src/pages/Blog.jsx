@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -6,7 +6,12 @@ import { blogPosts } from '../data/blogs';
 import '../styles/Blog.css';
 
 const Blog = () => {
+  useEffect(() => {
+    document.title = "Fashion Blog | DesignStitch";
+  }, []);
+
   return (
+
     <div className="blog-page container section-padding">
       <div className="shop-header">
         <h1>Fashion Blog</h1>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ShoppingBag, Search, Menu, X, Heart } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/Navbar.css';
 
@@ -9,8 +10,14 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [mobileSearchQuery, setMobileSearchQuery] = useState('');
+  
   const { cartCount } = useCart();
+  const { wishlistCount } = useWishlist();
+  
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,18 +44,36 @@ const Navbar = () => {
     };
   }, [isMobileMenuOpen]);
 
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery('');
+      setIsSearchOpen(false);
+    }
+  };
+
+  const handleMobileSearchSubmit = (e) => {
+    e.preventDefault();
+    if (mobileSearchQuery.trim()) {
+      navigate(`/shop?search=${encodeURIComponent(mobileSearchQuery.trim())}`);
+      setMobileSearchQuery('');
+      setIsMobileMenuOpen(false);
+    }
+  };
+
   return (
     <>
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
         <div className="container navbar-content">
           <div className="nav-left">
-            <button className="menu-btn" onClick={() => setIsMobileMenuOpen(true)}>
+            <button className="menu-btn" onClick={() => setIsMobileMenuOpen(true)} title="Open Menu">
               <Menu size={24} />
             </button>
             <div className="nav-links desktop-only">
               <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
               <Link to="/shop" className={location.pathname === '/shop' ? 'active' : ''}>Shop</Link>
-              <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>About</Link>
+              <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>Our Story</Link>
               <Link to="/blog" className={location.pathname === '/blog' ? 'active' : ''}>Blog</Link>
               <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact</Link>
             </div>
@@ -60,16 +85,28 @@ const Navbar = () => {
           </Link>
 
           <div className="nav-right">
-            <div className={`search-container ${isSearchOpen ? 'open' : ''}`}>
-              <input type="text" placeholder="Search products..." className="search-input" />
-              <button className="nav-icon-btn" onClick={() => setIsSearchOpen(!isSearchOpen)}>
+            {/* Desktop Search Form */}
+            <form onSubmit={handleSearchSubmit} className={`search-container ${isSearchOpen ? 'open' : ''}`}>
+              <input 
+                type="text" 
+                placeholder="Search products..." 
+                className="search-input" 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <button type="button" className="nav-icon-btn" onClick={() => setIsSearchOpen(!isSearchOpen)} title="Toggle Search">
                 <Search size={22} />
               </button>
-            </div>
-            <Link to="/wishlist" className="nav-icon-btn desktop-only">
+            </form>
+            
+            {/* Wishlist Link with Badge */}
+            <Link to="/wishlist" className="nav-icon-btn wishlist-nav-link" title="My Wishlist">
               <Heart size={22} />
+              {wishlistCount > 0 && <span className="wishlist-badge">{wishlistCount}</span>}
             </Link>
-            <Link to="/cart" className="nav-icon-btn cart-btn">
+            
+            {/* Cart Link with Badge */}
+            <Link to="/cart" className="nav-icon-btn cart-btn" title="Shopping Cart">
               <ShoppingBag size={22} />
               {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
             </Link>
@@ -97,16 +134,31 @@ const Navbar = () => {
             >
               <div className="mobile-menu-header">
                 <h2>DesignStitch</h2>
-                <button onClick={() => setIsMobileMenuOpen(false)}>
+                <button onClick={() => setIsMobileMenuOpen(false)} title="Close Menu">
                   <X size={24} />
                 </button>
               </div>
+
+              {/* Mobile Search Form */}
+              <form onSubmit={handleMobileSearchSubmit} className="mobile-search-form">
+                <input 
+                  type="text" 
+                  placeholder="Search collections..." 
+                  value={mobileSearchQuery}
+                  onChange={(e) => setMobileSearchQuery(e.target.value)}
+                />
+                <button type="submit"><Search size={20} /></button>
+              </form>
+
               <div className="mobile-nav-links">
                 <Link to="/">Home</Link>
                 <Link to="/shop">Shop</Link>
-                <Link to="/about">About</Link>
+                <Link to="/about">Our Story</Link>
                 <Link to="/blog">Blog</Link>
                 <Link to="/contact">Contact</Link>
+                <Link to="/wishlist" className="flex items-center gap-1">
+                  Wishlist ({wishlistCount})
+                </Link>
               </div>
             </motion.div>
           </motion.div>

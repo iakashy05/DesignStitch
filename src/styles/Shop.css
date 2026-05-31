@@ -108,6 +108,49 @@
   .shop-header h1 {
     font-size: 2.25rem;
   }
-  
-  /* Shop specific grid overrides if any, otherwise it uses Home.css .product-grid */
 }
+
+.search-results-heading {
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  font-size: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.results-count {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+}
+
+.clear-search-tag {
+  color: var(--accent-maroon);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  background: var(--primary-beige);
+  transition: var(--transition-smooth);
+}
+
+.clear-search-tag:hover {
+  background: var(--accent-maroon);
+  color: white;
+}
+
+.no-products-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.no-products p {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
